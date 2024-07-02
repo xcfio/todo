@@ -3,10 +3,10 @@ name: Code Test
 on:
     push:
         branches:
-            - cool
+            - main
     pull_request:
         branches:
-            - cool
+            - main
 
 jobs:
     test:
@@ -27,10 +27,6 @@ jobs:
               uses: pnpm/action-setup@v2
               with:
                   version: "latest"
-
-            # Create blank config
-            - name: Create blank config
-              run: node --eval "require('node:fs').writeFileSync('src/config.ts', 'export default {} as any')"
 
             # Install dependencies
             - name: Install dependencies
