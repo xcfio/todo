@@ -1,0 +1,36 @@
+{
+    "name": "utils",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "commonjs",
+    "author": "SoftwareX Plus",
+    "license": "ISC",
+    "scripts": {
+        "dev": "tsx watch src/index.ts",
+        "test": "tsc --watch --noEmit",
+        "build": "esbuild src/index.ts --bundle --outfile=index.js --platform=node --packages=external",
+        "start": "node index.js"
+    },
+    "keywords": [
+        "utils",
+        "discord.js",
+        "discord-bot"
+    ],
+    "dependencies": {
+        "@netlify/functions": "^2.8.0",
+        "canvacord": "^6.0.2",
+        "coolcake": "^0.0.3",
+        "discord.js": "^14.15.3",
+        "express": "^4.19.2",
+        "jsonwebtoken": "^9.0.2",
+        "postgres": "^3.4.4",
+        "serverless-http": "^3.2.0"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.21",
+        "@types/jsonwebtoken": "^9.0.6",
+        "@types/node": "^20.14.9",
+        "esbuild": "^0.21.5"
+    }
+}
