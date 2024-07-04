@@ -23,7 +23,7 @@ router.put("/tasks", auth, todo_put)
 
 router.use((_req, res) => res.status(404).json({ error: "Oh no... look like you entered wrong url" }))
 router.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
-    if (!res.headersSent) res.sendStatus(500)
+    if (!res.headersSent) res.status(500).json({ code: 500, error: "Internal Server Error" })
     console.trace(error)
 })
 
