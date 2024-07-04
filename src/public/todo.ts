@@ -10,12 +10,12 @@ export const todo = `
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f2f5;
             margin: 0;
-            padding: 100px; /* Increased padding on all sides */
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: calc(100vh - 200px); /* Adjusted height */
+            justify-content: flex-start;
+            height: 100vh;
         }
         .container {
             background: #fff;
@@ -23,34 +23,42 @@ export const todo = `
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
-            width: 400px; /* Reduced width */
+            width: 400px;
             transition: all 0.3s ease-in-out;
+            margin-top: 20px;
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
         }
         .container:hover {
             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
         h1 {
-            margin-bottom: 15px; /* Reduced margin */
+            margin-bottom: 15px;
             color: #333;
-            font-size: 22px; /* Reduced font size */
+            font-size: 22px;
         }
         input[type="text"], textarea {
             width: calc(100% - 20px);
-            padding: 8px; /* Reduced padding */
-            margin: 8px 0; /* Reduced margin */
+            padding: 8px;
+            margin: 8px 0;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 14px; /* Reduced font size */
+            font-size: 14px;
+            box-sizing: border-box; /* Ensure padding is included in the element's width */
+        }
+        textarea {
+            resize: vertical; /* Allow vertical resizing only */
+            min-height: 100px; /* Set a minimum height */
         }
         button {
             width: calc(100% - 20px);
-            padding: 10px; /* Reduced padding */
-            margin: 8px 0; /* Reduced margin */
+            padding: 10px;
+            margin: 8px 0; 
             border: none;
             border-radius: 5px;
             background-color: #007bff;
             color: #fff;
-            font-size: 14px; /* Reduced font size */
+            font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
         }
@@ -62,15 +70,19 @@ export const todo = `
             justify-content: space-between;
             align-items: center;
             background: #f9f9f9;
-            margin: 8px 0; /* Reduced margin */
-            padding: 8px; /* Reduced padding */
+            margin: 8px 0;
+            padding: 8px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            font-size: 14px; /* Reduced font size */
+            font-size: 14px;
         }
         .task.completed {
             text-decoration: line-through;
             color: gray;
+        }
+        .task button {
+            width: 80px;
+            margin: 0 2px;
         }
     </style>
 </head>

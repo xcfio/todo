@@ -16,10 +16,10 @@ router.get("/register", (_, res) => res.send(register))
 router.post("/register", register_post)
 
 router.get("/todo", auth, (_, res) => res.send(todo))
-router.delete("/tasks", auth, todo_delete)
-
 router.get("/tasks", auth, todo_get)
-router.put("/tasks", auth, todo_put)
+
+// router.put("/tasks", auth, todo_put)
+// router.delete("/tasks", auth, todo_delete)
 
 router.use((_req, res) => res.status(404).json({ error: "Oh no... look like you entered wrong url" }))
 router.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
