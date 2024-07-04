@@ -1,15 +1,15 @@
 import { UUID } from "crypto"
 
-export type obj = {
+export interface obj {
     id: UUID
+    users: UUID
     title: string
     description: string
     status: boolean
 }
 
-export type user = {
+export interface user {
     id: UUID
-    users: UUID
     username: string
     email: string
     password: string

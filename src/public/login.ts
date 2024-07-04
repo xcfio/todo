@@ -90,9 +90,7 @@ export const login = `
 
         document.addEventListener("DOMContentLoaded", () => {
             const authCookie = getCookie('auth');
-            if (authCookie) {
-                window.location.href = '/todo';
-            }
+            if (authCookie) window.location.href = '/todo';
         });
 
         async function login() {
@@ -116,12 +114,13 @@ export const login = `
 
                 switch (response.status) {
                     case 200:
-                        document.cookie = "auth=true; path=/"; // Set the auth cookie
                         window.location.href = '/todo';
                         break;
 
-                    case 400:
-                        errorElement.innerText = "Invalid username or password";
+                    case 401:
+                    case 403:
+                        const data = await response?.json()
+                        errorElement.innerText = data?.message ?? data?.error ?? "Invalid username or password"
                         break;
 
                     default:

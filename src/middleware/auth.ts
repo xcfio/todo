@@ -1,3 +1,5 @@
 import { NextFunction, Request, Response } from "express"
 
-export function auth(req: Request, res: Response, next: NextFunction) {}
+export function auth(req: Request, res: Response, next: NextFunction) {
+    res.sendStatus(200)
+}

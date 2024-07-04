@@ -99,6 +99,17 @@ export const register = `
             return passwordRegex.test(password);
         }
 
+        function getCookie(name) {
+            const value = \`;\${document.cookie}\`;
+            const parts = value.split(\`;\${name}=\`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const authCookie = getCookie('auth');
+            if (authCookie) window.location.href = '/todo';
+        });
+
         async function register() {
             const username = document.getElementById("username").value;
             const email = document.getElementById("email").value;
@@ -138,12 +149,12 @@ export const register = `
 
                 switch (response.status) {
                     case 200:
-                        alert("Registration successful");
-                        window.location.href = '/login';
+                        window.location.href = '/todo';
                         break;
 
                     case 400:
-                        errorElement.innerText = "Invalid input. Please check your details.";
+                        const data = await response?.json()
+                        errorElement.innerText = data?.message ?? data?.error ?? "An error occurred. Please try again."
                         break;
 
                     default:
