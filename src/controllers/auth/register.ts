@@ -25,7 +25,7 @@ export async function register_post(req: Request, res: Response, next: NextFunct
         })} returning id, email, username`
 
         const jwt = sign(user, process.env.JWT_SECRET, { expiresIn: 604_800_000 })
-        res.cookie("auth", jwt, { maxAge: 604_800_000 })
+        res.cookie("auth", jwt, { signed: true, maxAge: 604_800_000 })
         res.sendStatus(200)
     } catch (error) {
         next(error)

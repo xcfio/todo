@@ -5,7 +5,7 @@ import { auth } from "./middleware"
 import cookie from "cookie-parser"
 
 const router = Router()
-router.use(cookie(process.env.cookie_secret))
+router.use(cookie(process.env.COOKIE_SECRET))
 router.use(json())
 
 router.get("/", (req, res) => (req.cookies.auth ? res.redirect("/todo") : res.redirect("/login")))
@@ -18,8 +18,8 @@ router.post("/register", register_post)
 router.get("/todo", auth, (_, res) => res.send(todo))
 router.get("/tasks", auth, todo_get)
 
-// router.put("/tasks", auth, todo_put)
-// router.delete("/tasks", auth, todo_delete)
+router.put("/tasks", auth, todo_put)
+router.delete("/tasks", auth, todo_delete)
 
 router.use((_req, res) => res.status(404).json({ error: "Oh no... look like you entered wrong url" }))
 router.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
