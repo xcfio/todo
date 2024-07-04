@@ -8,7 +8,7 @@ const router = Router()
 router.use(cookie(process.env.cookie_secret))
 router.use(json())
 
-router.get("/", (req, res) => (req.cookies.auth ? res.redirect("/todo") : res.redirect("/register")))
+router.get("/", (req, res) => (req.cookies.auth ? res.redirect("/todo") : res.redirect("/login")))
 router.get("/login", (_, res) => res.send(login))
 router.post("/login", login_post)
 
