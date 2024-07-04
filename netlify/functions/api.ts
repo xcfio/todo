@@ -6,5 +6,3 @@ config()
 
 export const app = express().use(router)
 export const handler = serverless(app)
-
-app.listen(7200, () => console.log("Project is running at http://localhost:7200"))

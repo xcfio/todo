@@ -7,12 +7,21 @@ export type obj = {
     status: boolean
 }
 
+export type user = {
+    id: UUID
+    users: UUID
+    username: string
+    email: string
+    password: string
+}
+
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
             URI: string
-            jwt_secret: string
-            cookie_secret: string
+            JWT_SECRET: string
+            COOKIE_SECRET: string
+            SALT: string
         }
     }
 }

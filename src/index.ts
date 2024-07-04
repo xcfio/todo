@@ -1,8 +1,8 @@
+import { login_post, register_post, todo_delete, todo_get, todo_put } from "./controllers"
 import { NextFunction, Request, Response, Router, json } from "express"
 import { login, register, todo } from "./public"
-import cookie from "cookie-parser"
-import { login_post, register_post, todo_delete, todo_get, todo_put } from "./controllers"
 import { auth } from "./middleware"
+import cookie from "cookie-parser"
 
 const router = Router()
 router.use(cookie(process.env.cookie_secret))

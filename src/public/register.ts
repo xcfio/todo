@@ -84,6 +84,21 @@ export const register = `
     </div>
 
     <script>
+        function validateEmail(email) {
+            const emailRegex = /^(?!.*\\+)([a-zA-Z0-9._%-]+@(gmail\\.com|outlook\\.com|proton\\.me))$/;
+            return emailRegex.test(email);
+        }
+
+        function validateUsername(username) {
+            const usernameRegex = /^[a-z0-9]{5,20}$/;
+            return usernameRegex.test(username);
+        }
+
+        function validatePassword(password) {
+            const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\\d).{8,}$/;
+            return passwordRegex.test(password);
+        }
+
         async function register() {
             const username = document.getElementById("username").value;
             const email = document.getElementById("email").value;
@@ -94,6 +109,18 @@ export const register = `
 
             if (!username || !email || !password || !confirmPassword) {
                 return (errorElement.innerText = "Please fill in all fields");
+            }
+
+            if (!validateUsername(username)) {
+                return (errorElement.innerText = "Username must be 5-20 characters long and contain only lowercase letters and numbers");
+            }
+
+            if (!validateEmail(email)) {
+                return (errorElement.innerText = "Email must be a valid Gmail, Outlook, or ProtonMail address without '+'");
+            }
+
+            if (!validatePassword(password)) {
+                return (errorElement.innerText = "Password must be at least 8 characters long and can include letters, numbers, and symbols");
             }
 
             if (password !== confirmPassword) {
