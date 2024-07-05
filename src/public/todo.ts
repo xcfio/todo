@@ -113,7 +113,7 @@ export const todo = `
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ title, description, status: false })
+                    body: JSON.stringify({ title, description })
                 });
 
                 if (response.status === 200) {
@@ -180,7 +180,7 @@ export const todo = `
         async function toggleStatus(id) {
             try {
                 const response = await fetch(\`/tasks/\${id}\`);
-                const task = await response.json();
+                const task = (await response.json()).shift()
                 task.status = !task.status;
 
                 const updateResponse = await fetch("/tasks", {

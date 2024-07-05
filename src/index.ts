@@ -16,7 +16,7 @@ router.get("/register", (_, res) => res.send(register))
 router.post("/register", register_post)
 
 router.get("/todo", auth, (_, res) => res.send(todo))
-router.get("/tasks", auth, todo_get)
+router.get("/tasks/:id?", auth, todo_get)
 
 router.put("/tasks", auth, todo_put)
 router.delete("/tasks", auth, todo_delete)

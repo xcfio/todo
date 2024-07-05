@@ -1,27 +1,15 @@
 import { NextFunction, Request, Response } from "express"
-import { randomUUID } from "node:crypto"
-import { obj } from "../../function"
+import { decode } from "jsonwebtoken"
+import { sql } from "../../function"
 
-export function todo_get(req: Request, res: Response, next: NextFunction) {
-    const obj: Array<obj> = [
-        {
-            id: randomUUID(),
-            title: "Note",
-            description: `This is just a place holder`,
-            users: randomUUID(),
-            status: false
-        }
-    ]
-
-    for (let i = 1; i <= 20; i++) {
-        const status = Math.round(Math.random()) === 1
-        obj.push({
-            id: randomUUID(),
-            title: `Task ${i}`,
-            description: `This is task ${i} with status ${status}.`,
-            users: randomUUID(),
-            status
-        })
+export async function todo_get(req: Request, res: Response, next: NextFunction) {
+    try {
+        const users = (decode(req.signedCookies.auth) as any).id as string
+        const obj = req.params.id
+            ? await sql`select * from todo where users = ${users} and id = ${req.params.id}`
+            : await sql`select * from todo where users = ${users}`
+        res.json(obj)
+    } catch (error) {
+        next(error)
     }
-    res.json(obj)
 }
