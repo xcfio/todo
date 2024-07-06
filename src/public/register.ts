@@ -85,12 +85,12 @@ export const register = `
 
     <script>
         function validateEmail(email) {
-            const emailRegex = /^(?!.*\\+)([a-zA-Z0-9._%-]+@(gmail\\.com|outlook\\.com|proton\\.me))$/;
+            const emailRegex = /^(?!.*\\+)([a-zA-Z0-9._%-]+@(gmail\\.com|outlook\\.com|proton\\.me|example\\.com))$/;
             return emailRegex.test(email);
         }
 
         function validateUsername(username) {
-            const usernameRegex = /^[a-z0-9]{5,20}$/;
+            const usernameRegex = /^[a-z0-9]{5,20}$/i;
             return usernameRegex.test(username);
         }
 
@@ -127,7 +127,7 @@ export const register = `
             }
 
             if (!validateEmail(email)) {
-                return (errorElement.innerText = "Email must be a valid Gmail, Outlook, or ProtonMail address without '+'");
+                return (errorElement.innerText = "Email must be a valid Gmail, Outlook, ProtonMail, example.com address");
             }
 
             if (!validatePassword(password)) {

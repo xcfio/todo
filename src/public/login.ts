@@ -74,7 +74,7 @@ export const login = `
 <body>
     <div class="container">
         <h1>Login</h1>
-        <input type="text" id="username" placeholder="Enter your username" required>
+        <input type="text" id="username" placeholder="Enter your username or email" required>
         <input type="password" id="password" placeholder="Enter your password" required>
         <button onclick="login()">Login</button>
         <div class="error" id="error"></div>

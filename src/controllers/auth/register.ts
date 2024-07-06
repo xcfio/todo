@@ -19,8 +19,8 @@ export async function register_post(req: Request, res: Response, next: NextFunct
 
         const hash = createHmac("SHA256", password).update(process.env.SALT).digest("hex")
         const [user] = await sql<Array<Omit<user, "password">>>`insert into users ${sql({
-            username,
-            email,
+            username: username.toLowerCase(),
+            email: email.toLowerCase(),
             password: hash
         })} returning id, email, username`
 
