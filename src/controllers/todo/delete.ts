@@ -4,7 +4,7 @@ import { sql } from "../../function"
 export async function todo_delete(req: Request, res: Response, next: NextFunction) {
     try {
         await sql`delete from todo where id = ${req.body.id}`
-        res.sendStatus(200)
+        res.status(200).json({ message: "Success" })
     } catch (error) {
         next(error)
     }

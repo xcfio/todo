@@ -16,7 +16,7 @@ export async function todo_put(req: Request, res: Response, next: NextFunction) 
             await sql`insert into todo ${sql({ ...req.body, users })}`
         }
 
-        res.sendStatus(200)
+        res.status(200).json({ message: "Success" })
     } catch (error) {
         next(error)
     }

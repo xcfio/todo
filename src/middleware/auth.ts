@@ -8,7 +8,7 @@ export function auth(req: Request, res: Response, next: NextFunction) {
         next()
     } catch (error) {
         if (error instanceof Error && error.message === "invalid signature") {
-            res.cookie("auth", "invalid signature", { maxAge: 0 })
+            res.cookie("auth", "invalid signature", { signed: true, maxAge: 0 })
             return res.status(401).redirect("/login")
         } else {
             next(error)

@@ -121,7 +121,8 @@ export const todo = `
                     document.getElementById("title").value = "";
                     document.getElementById("description").value = "";
                 } else {
-                    errorElement.innerText = "An error occurred. Please try again.";
+                    const data = await response?.json()
+                    errorElement.innerText = data?.message ?? data?.error ?? "An error occurred. Please try again."
                 }
             } catch (error) {
                 console.error("Error:", error);
@@ -169,7 +170,8 @@ export const todo = `
                 if (response.status === 200) {
                     fetchTasks();
                 } else {
-                    document.getElementById("error").innerText = "An error occurred. Please try again.";
+                    const data = await response?.json()
+                    document.getElementById("error").innerText = data?.message ?? data?.error ?? "An error occurred. Please try again."
                 }
             } catch (error) {
                 console.error("Error:", error);
@@ -194,7 +196,8 @@ export const todo = `
                 if (updateResponse.status === 200) {
                     fetchTasks();
                 } else {
-                    document.getElementById("error").innerText = "An error occurred. Please try again.";
+                    const data = await response?.json()
+                    document.getElementById("error").innerText = data?.message ?? data?.error ?? "An error occurred. Please try again."
                 }
             } catch (error) {
                 console.error("Error:", error);

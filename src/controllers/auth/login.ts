@@ -18,7 +18,7 @@ export async function login_post(req: Request, res: Response, next: NextFunction
             `
         ).shift()
 
-        if (!user) return res.status(401).json({ code: 403, error: "Invalid Username or Password" })
+        if (!user) return res.status(401).json({ code: 401, error: "Invalid Username or Password" })
         const jwt = sign(user, process.env.JWT_SECRET, { expiresIn: 604_800_000 })
         res.cookie("auth", jwt, { signed: true, maxAge: 604_800_000 })
         res.sendStatus(200)
